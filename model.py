@@ -6,6 +6,10 @@ from nltk.corpus import stopwords
 from collections import Counter
 from functions import selecting_random_useragent, finding_xpath_per_channel, normalizing_text
 import pandas as pd
+from wordcloud import WordCloud, ImageColorGenerator
+from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
 nltk.download("punkt")
 nltk.download('stopwords')
 
@@ -176,7 +180,35 @@ class Data_Analysis(Data_Parsing):
         df = pd.DataFrame({'content':self.most_common_word})
         df['content'] = [element[0] + '.--.' + str(element[1]) for element in df['content']]
         df = df['content'].str.split('.--.', expand=True)
-        df = df.rename({0:'word',
+        self.df = df.rename({0:'word',
                 1:'frequency'}, axis = 1)
 
         df.to_csv('top_words_in_newspapers.csv')
+
+        
+class Data_Visualization(Data_Analysis):
+    
+    def __init__(self, data_analysis):
+        self. = data_analysis.df
+        
+    def structing_wordcloud(self):
+        mask = np.array(Image.open('mapa.png')) # We put our favorite picture
+        self.wc = WordCloud(mask=mask, #We specify the image we will use
+                       background_color="white", # We specify the background of our workcloud
+                       max_words=800, #Max words we will use in the chart
+                       max_font_size=256, #Max 
+                       random_state=42, #Avoiding random
+                       width=mask.shape[1], #The size
+                       height=mask.shape[0]) #The size)
+
+        words = ' '.join(list(df['words']))
+        
+        self.wc.generate(words)
+        
+    def plotting(self):
+        plt.figure(figsize=(20, 12))
+        plt.imshow(self.wc, interpolation="bilinear")
+        plt.axis('off')
+        plt.show()                    
+                       
+    
