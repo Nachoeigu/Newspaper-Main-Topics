@@ -175,15 +175,16 @@ class Data_Analysis(Data_Parsing):
             else:
                 self.most_common_word.append(self.word_count[index])
 
-    def list_to_csv(self):
-        print('Exporting to csv file')       
+    def creating_dataframe(self):
+        print('Creating dataframe')       
         df = pd.DataFrame({'content':self.most_common_word})
         df['content'] = [element[0] + '.--.' + str(element[1]) for element in df['content']]
         df = df['content'].str.split('.--.', expand=True)
         self.df = df.rename({0:'word',
                 1:'frequency'}, axis = 1)
 
-        df.to_csv('top_words_in_newspapers.csv')
+    def exporting_csv(self):
+        self.df.to_csv('top_words_in_newspapers.csv')
 
         
 class Data_Visualization(Data_Analysis):
@@ -191,11 +192,11 @@ class Data_Visualization(Data_Analysis):
     def __init__(self, data_analysis):
         self. = data_analysis.df
         
-    def structing_wordcloud(self):
+    def structing_wordcloud(self, top_words:int=800):
         mask = np.array(Image.open('mapa.png')) # We put our favorite picture
         self.wc = WordCloud(mask=mask, #We specify the image we will use
                        background_color="white", # We specify the background of our workcloud
-                       max_words=800, #Max words we will use in the chart
+                       max_words=top_words, #Max words we will use in the chart
                        max_font_size=256, #Max 
                        random_state=42, #Avoiding random
                        width=mask.shape[1], #The size
