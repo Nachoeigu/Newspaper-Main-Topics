@@ -27,6 +27,6 @@ data_analysis.creating_dataframe()
 
 visualization = Data_Visualization(data_analysis)
 
-visualization.structing_wordcloud()
+visualization.structing_wordcloud(top_words=1000)
 
 visualization.plotting()

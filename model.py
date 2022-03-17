@@ -19,7 +19,6 @@ class Data_Extraction:
         self.asession = AsyncHTMLSession()
         self.urls = urls
 
-    #This function is useful for those cases we need to render Javascript content
     async def request(self, url):
         print(f"Making request for {url}")
         response = await self.asession.get(url = url, headers = selecting_random_useragent())
@@ -137,7 +136,6 @@ class Data_Analysis(Data_Parsing):
                 self.collocation_sentences.append(sentence)
                 self.collocation_values.append(collocation[-1])
 
-
     def finding_most_common_words(self,top_n:int):
         print("Finding most common words in the big one string")
         #We calculate the most common words
@@ -190,10 +188,10 @@ class Data_Analysis(Data_Parsing):
 class Data_Visualization(Data_Analysis):
     
     def __init__(self, data_analysis):
-        self. = data_analysis.df
+        self.df = data_analysis.df
         
     def structing_wordcloud(self, top_words:int=800):
-        mask = np.array(Image.open('mapa.png')) # We put our favorite picture
+        mask = np.array(Image.open('map.png')) # We put our favorite picture
         self.wc = WordCloud(mask=mask, #We specify the image we will use
                        background_color="white", # We specify the background of our workcloud
                        max_words=top_words, #Max words we will use in the chart
@@ -202,7 +200,7 @@ class Data_Visualization(Data_Analysis):
                        width=mask.shape[1], #The size
                        height=mask.shape[0]) #The size)
 
-        words = ' '.join(list(df['words']))
+        words = ' '.join(list(self.df['word']))
         
         self.wc.generate(words)
         
