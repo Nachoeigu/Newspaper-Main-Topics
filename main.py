@@ -3,7 +3,7 @@ from constants import media_urls
 
 data_extractor = Data_Extraction(urls = media_urls)
 
-data_extractor.main()
+data_extractor.main(media_urls)
 
 data_parsing = Data_Parsing(data_extractor)
 
@@ -17,7 +17,7 @@ data_analysis.filtering_stopwords()
 
 data_analysis.analyzing_collocations()
 
-data_analysis.finding_most_common_words()
+data_analysis.finding_most_common_words(top_n=50)
 
 data_analysis.most_common_words_with_collocations()
 

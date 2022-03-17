@@ -30,9 +30,9 @@ def normalizing_text(string):
     return title
 
 def selecting_random_useragent():
-    return random.choice(list_of_user_agents)
+    return {'User-Agent': f'{random.choice(list_of_user_agents)}'}
 
 def finding_xpath_per_channel(response:list):
     for xpath in list_xpaths:
-        if response[1] in xpath[1]: #response[1] and xpath[1] are the names of the sites
+        if xpath[1] in response[1]: #response[1] and xpath[1] are the names of the sites
             return xpath #Its the xpath tuple with expresion and name
