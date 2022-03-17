@@ -21,6 +21,8 @@ data_analysis.finding_most_common_words(top_n=500)
 
 data_analysis.most_common_words_with_collocations()
 
+data_analysis.creating_dataframe()
+
 #data_analysis.list_to_csv()
 
 visualization = Data_Visualization(data_analysis)
