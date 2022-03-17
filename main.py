@@ -1,4 +1,4 @@
-from model import Data_Analysis, Data_Extraction, Data_Parsing
+from model import Data_Analysis, Data_Extraction, Data_Parsing, Data_Visualization
 from constants import media_urls
 
 data_extractor = Data_Extraction(urls = media_urls)
@@ -17,10 +17,14 @@ data_analysis.filtering_stopwords()
 
 data_analysis.analyzing_collocations()
 
-data_analysis.finding_most_common_words(top_n=50)
+data_analysis.finding_most_common_words(top_n=500)
 
 data_analysis.most_common_words_with_collocations()
 
-data_analysis.list_to_csv()
+#data_analysis.list_to_csv()
 
+visualization = Data_Visualization(data_analysis)
 
+visualization.structing_wordcloud()
+
+visualization.plotting()
